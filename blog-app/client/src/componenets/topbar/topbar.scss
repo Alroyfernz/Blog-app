@@ -1,0 +1,80 @@
+.top {
+    width: 100%;
+    height: 50px;
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    font-family: "Josefin Sans", sans-serif;
+    z-index: 1;
+    &_Left {
+        flex: 3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .left_Icons {
+            font-size: 20px;
+            margin-right: 10px;
+            color: #444;
+            cursor: pointer;
+        }
+    }
+    &_Right {
+        flex: 3;
+        .userImage {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .right_Icons {
+            margin-left: 15px;
+            font-size: 18px;
+            color: #666;
+            cursor: pointer;
+        }
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .topListHide {
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
+            &_Item {
+                margin-right: 20px;
+                font-size: 18px;
+                font-weight: 300;
+                cursor: pointer;
+            }
+        }
+    }
+
+    &_Center {
+        flex: 6;
+        .topList {
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
+            .topListItem {
+                margin-right: 20px;
+                font-size: 18px;
+                font-weight: 300;
+                cursor: pointer;
+
+                .link {
+                    text-decoration: "none";
+                    color: "inherit";
+                }
+            }
+        }
+    }
+}
