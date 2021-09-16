@@ -1,14 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./singlePost.scss";
+import axios from "axios";
 import { FiEdit } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
+import { useLocation } from "react-router";
+import { Link } from "react-router-dom";
 const SinglePost = () => {
+  const location = useLocation();
+  const path = location.pathname.split("/")[2];
+  const [post, setPost] = useState();
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const response = await axios.get("/posts/" + path);
+      setPost(response.data);
+    };
+
+    fetchPosts();
+  }, [path]);
+
   return (
     <div className="singlePost">
       <div className="singlePost_Wrapper">
-        <img src="assets/post/2.jpeg" alt="" className="singlePost_Image" />
+        {post.photo && (
+          <img src={post.photo} alt="" className="singlePost_Image" />
+        )}
+
         <h1 className="singlePost_Title">
-          Lorem ipsum dolor sit.
+          {post.title}
           <div className="singlePost_Edit">
             <FiEdit style={{ color: "teal" }} className="singlePost_Icons" />
             <MdDelete
@@ -19,29 +37,19 @@ const SinglePost = () => {
         </h1>
         <div className="singlePost_Info">
           <span className="singlePost_Author">
-            Author: <b> Alroy</b>
+            Author:{" "}
+            <Link
+              to={`/?user=${post.username}`}
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <b>{post.username}</b>
+            </Link>
           </span>
-          <span className="singlePost_Date">1 hour ago</span>
+          <span className="singlePost_Date">
+            {new Date(post.createdAt).toDateString()}
+          </span>
         </div>
-        <p className="singlePost_Description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
-          blanditiis maiores, ex quos dolor consequatur vero accusamus unde
-          recusandae non aspernatur officia architecto ipsa corporis dolore
-          eaque adipisci provident, repellat dolorum saepe! Officiis doloremque,
-          id tempore cupiditate consequuntur, molestias, dolorem temporibus
-          sequi sint aperiam dicta? Dignissimos veniam perferendis quaerat
-          recusandae nostrum sequi modi eligendi consequatur aspernatur maxime,
-          nam dolore. Laboriosam voluptatibus sit ut reprehenderit hic!
-          Doloribus neque voluptas temporibus quae expedita, maxime nesciunt
-          harum vel quam tempore amet aliquam voluptatem nemo, dolore facilis.
-          Voluptatum tenetur eum debitis magnam iusto quasi a delectus! Harum
-          ipsum itaque beatae maxime, nulla soluta tempora? Lorem ipsum, dolor
-          sit amet consectetur adipisicing elit. Sapiente doloribus eligendi cum
-          aspernatur ab impedit placeat quos quisquam nam facere facilis amet
-          odio, quas excepturi at consectetur laudantium quasi consequatur, quis
-          id nesciunt perspiciatis aut vel odit! Nisi quam eius repudiandae,
-          tempore, quia quo neque repellat reprehenderit deleniti officia nobis!
-        </p>
+        <p className="singlePost_Description">{post.desc}</p>
       </div>
     </div>
   );

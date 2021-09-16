@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./sidebar.scss";
+import axios from "axios";
 import {
   FaFacebookSquare,
   FaInstagramSquare,
   FaTwitterSquare,
 } from "react-icons/fa";
 import "./sidebar.scss";
+import { Link } from "react-router-dom";
 const Sidebar = () => {
+  const [cats, setCats] = useState();
+
+  useEffect(() => {
+    const getCats = async () => {
+      const res = await axios.get("/categories");
+      setCats(res.data);
+    };
+
+    getCats();
+  }, []);
   return (
     <div className="sidebar">
       <div className="sidebar_Item">
@@ -21,12 +33,14 @@ const Sidebar = () => {
       <div className="sidebar_Item">
         <span className="sidebar_Item_Title">Categories</span>
         <ul className="sidebar_Item_List">
-          <li className="sidebar_Item_List_Item">Life</li>
-          <li className="sidebar_Item_List_Item">Music</li>
-          <li className="sidebar_Item_List_Item">Style</li>
-          <li className="sidebar_Item_List_Item">Sport</li>
-          <li className="sidebar_Item_List_Item">Tech</li>
-          <li className="sidebar_Item_List_Item">Cinema</li>
+          {cats?.map((c) => {
+            <Link
+              to={`/?cat=${c.name}`}
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <li className="sidebar_Item_List_Item">{c.name}</li>;
+            </Link>;
+          })}
         </ul>
       </div>
       <div className="sidebar_Item">

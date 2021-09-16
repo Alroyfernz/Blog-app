@@ -11,8 +11,12 @@ const Post = ({ post }) => {
             <span className="post_Catergory">{c.name}</span>;
           })}
         </div>
-        <Link></Link>
-        <span className="post_Title">{post.title}</span>
+        <Link
+          to={`/post/${post._id}`}
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          <span className="post_Title">{post.title}</span>
+        </Link>
         <hr />
         <span className="post_Date">
           {new Date(post.createdAt).toDateString()}
