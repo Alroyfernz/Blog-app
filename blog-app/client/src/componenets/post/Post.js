@@ -1,27 +1,24 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./post.scss";
-const Post = () => {
+const Post = ({ post }) => {
   return (
     <div className="post">
-      <img className="post_Image" src="assets/post/4.jpeg" alt="" />
+      {post.photo && <img className="post_Image" src={post.photo} alt="" />}
       <div className="post_Info">
         <div className="post_Catergories">
-          <span className="post_Catergory">Music</span>
-          <span className="post_Catergory">life</span>
+          {post.categories.map((c) => {
+            <span className="post_Catergory">{c.name}</span>;
+          })}
         </div>
-        <span className="post_Title">Lorem ipsum dolor sit amet.</span>
+        <Link></Link>
+        <span className="post_Title">{post.title}</span>
         <hr />
-        <span className="post_Date">1 hour ago</span>
+        <span className="post_Date">
+          {new Date(post.createdAt).toDateString()}
+        </span>
       </div>
-      <p className="post_Description">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias aperiam
-        cum ipsam, animi quos saepe hic. Corrupti ipsam ratione quia. Lorem
-        ipsum dolor sit amet consectetur, adipisicing elit. Quaerat sint magni
-        impedit cum repudiandae? Ab tempora, a fugit itaque ipsam eos, ex eius
-        incidunt nihil quae modi rem ducimus mollitia, vero consequatur quis.
-        Eligendi laboriosam aperiam repellat consequuntur, tenetur soluta id sit
-        debitis aliquid natus maiores delectus quam eveniet. Rerum.
-      </p>
+      <p className="post_Description">{post.desc}</p>
     </div>
   );
 };
