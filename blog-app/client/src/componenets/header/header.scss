@@ -25,3 +25,20 @@
         object-fit: cover;
     }
 }
+@media (max-width: 670px) {
+    .header {
+        margin: unset;
+
+        &_Titles {
+            &_Small {
+                top: 8%;
+            }
+            &_Large {
+                top: 10%;
+            }
+        }
+        &_Image {
+            margin: unset;
+        }
+    }
+}

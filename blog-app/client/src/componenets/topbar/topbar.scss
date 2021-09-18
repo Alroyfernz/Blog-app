@@ -77,4 +77,84 @@
             }
         }
     }
+    &_toggle {
+        display: none;
+    }
+}
+
+@media (max-width: 670px) {
+    .top {
+        position: sticky;
+        background-color: lightblue;
+
+        &.open {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: black;
+            z-index: 998;
+        }
+        &_Left {
+            display: none;
+
+            &.open {
+                display: flex;
+                .left_Icons {
+                    font-size: 26px;
+                }
+            }
+        }
+        &_Center {
+            display: none;
+            &.open {
+                display: flex;
+                flex-direction: column;
+                color: rgb(233, 233, 233);
+                .topList {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    margin: 0;
+                    padding: 0;
+                    list-style: none;
+
+                    .topListItem {
+                        margin-right: 20px;
+                        padding: 22px;
+                        font-size: 30px;
+                        font-weight: 500;
+                        align-items: center;
+                        cursor: pointer;
+
+                        .link {
+                            text-decoration: "none";
+                            color: "inherit";
+                        }
+                    }
+                }
+            }
+        }
+        &_Right {
+            display: none;
+            &.open {
+                display: flex;
+            }
+        }
+        &_toggle {
+            display: flex;
+            justify-content: space-between;
+
+            align-items: center;
+
+            &_Icon {
+                margin-left: 220px;
+                &:hover {
+                    cursor: pointer;
+                }
+                &.close {
+                }
+            }
+        }
+    }
 }

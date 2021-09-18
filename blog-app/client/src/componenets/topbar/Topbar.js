@@ -1,28 +1,31 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   FaFacebookSquare,
   FaTwitterSquare,
   FaInstagramSquare,
   FaSearch,
+  FaBars,
 } from "react-icons/fa";
+import { CgClose } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import { Logout } from "../../context/Actions";
 import { Context } from "../../context/Context";
 import "./topbar.scss";
 const Topbar = () => {
+  const [open, setOpen] = useState(true);
   const PF = "http://localhost:5000/images/";
   const { user, dispatch } = useContext(Context);
   const handleLogout = () => {
     dispatch(Logout());
   };
   return (
-    <div className="top">
-      <div className="top_Left">
+    <div className="top open">
+      <div className="top_Left open">
         <FaFacebookSquare className="left_Icons" />
         <FaTwitterSquare className="left_Icons" />
         <FaInstagramSquare className="left_Icons" />
       </div>
-      <div className="top_Center">
+      <div className="top_Center open">
         <ul className="topList">
           <li className="topListItem">
             <Link
@@ -78,14 +81,10 @@ const Topbar = () => {
           </li>
         </ul>
       </div>
-      <div className="top_Right">
+      <div className="top_Right open">
         {user ? (
           <img
-            src={
-              user.profilePicture
-                ? PF + user.profilePicture
-                : "assets/images/person/1.jpeg"
-            }
+            src={`${PF}/16319860493636.jpeg`}
             alt="userimg"
             className="userImage"
           />
@@ -111,6 +110,15 @@ const Topbar = () => {
         )}
 
         <FaSearch className="right_Icons" />
+      </div>
+      <div className="top_toggle">
+        <h2>Blog app</h2>
+
+        {open ? (
+          <CgClose style={{ zIndex: 999, color: "white" }} />
+        ) : (
+          <FaBars className="top_toggle_Icon" />
+        )}
       </div>
     </div>
   );
