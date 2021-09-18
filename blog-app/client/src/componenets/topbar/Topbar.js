@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   FaFacebookSquare,
   FaTwitterSquare,
@@ -6,9 +6,15 @@ import {
   FaSearch,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { Logout } from "../../context/Actions";
+import { Context } from "../../context/Context";
 import "./topbar.scss";
-const topbar = () => {
-  const user = false;
+const Topbar = () => {
+  const PF = "http://localhost:5000/images/";
+  const { user, dispatch } = useContext(Context);
+  const handleLogout = () => {
+    dispatch(Logout());
+  };
   return (
     <div className="top">
       <div className="top_Left">
@@ -64,6 +70,7 @@ const topbar = () => {
                 className="link"
                 to="/"
                 style={{ textDecoration: "none", color: "inherit" }}
+                onClick={handleLogout}
               >
                 LOGOUT
               </Link>
@@ -73,7 +80,15 @@ const topbar = () => {
       </div>
       <div className="top_Right">
         {user ? (
-          <img src="assets/person/8.jpeg" alt="userimg" className="userImage" />
+          <img
+            src={
+              user.profilePicture
+                ? PF + user.profilePicture
+                : "assets/images/person/1.jpeg"
+            }
+            alt="userimg"
+            className="userImage"
+          />
         ) : (
           <ul className="topListHide">
             <li className="topListHide_Item">
@@ -101,4 +116,4 @@ const topbar = () => {
   );
 };
 
-export default topbar;
+export default Topbar;

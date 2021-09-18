@@ -2,7 +2,7 @@ const router = require("express").Router();
 const User = require("../models/User");
 
 const Post = require("../models/Post");
-router.post("/:id", async (req, res) => {
+router.post("/", async (req, res) => {
   const newPost = new Post(req.body);
   try {
     const savedPost = await newPost.save();
@@ -77,7 +77,7 @@ router.get("/", async (req, res) => {
         },
       });
     } else {
-      posts = Post.find();
+      posts = await Post.find();
     }
     res.status(200).json(posts);
   } catch (error) {
