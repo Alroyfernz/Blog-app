@@ -3,15 +3,28 @@ import Sidebar from "../../componenets/sidebar/Sidebar";
 import "./setting.scss";
 import { BiUserCircle } from "react-icons/bi";
 import { Context } from "../../context/Context";
+import { Logout } from "../../context/Actions";
+import axios from "axios";
 const Setting = () => {
-  const { user } = useContext(Context);
+  const { user, dispatch } = useContext(Context);
+
+  const handleDelete = async () => {
+    dispatch(Logout());
+    try {
+      await axios.delete("/user/" + user._id, { userId: user._id });
+    } catch (error) {
+      console.error(" error while deleting");
+    }
+  };
 
   return (
     <div className="settings">
       <div className="settings_Wrapper">
         <div className="settings_Title">
           <span className="settings_UpdateTitle">Update your account</span>
-          <span className="settings_DeleteTitle">Delete your account</span>
+          <span className="settings_DeleteTitle" onClick={handleDelete}>
+            Delete your account
+          </span>
         </div>
         <form className="settingsForm">
           <label>Profile Picture</label>
