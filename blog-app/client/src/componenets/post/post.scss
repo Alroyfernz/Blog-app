@@ -50,3 +50,11 @@
         -webkit-box-orient: vertical;
     }
 }
+
+@media screen and (max-width: 600px) {
+    .post {
+        &_Image {
+            height: 200px;
+        }
+    }
+}

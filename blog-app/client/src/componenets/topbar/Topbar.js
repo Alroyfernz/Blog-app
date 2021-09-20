@@ -12,20 +12,24 @@ import { Logout } from "../../context/Actions";
 import { Context } from "../../context/Context";
 import "./topbar.scss";
 const Topbar = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const PF = "http://localhost:5000/images/";
   const { user, dispatch } = useContext(Context);
   const handleLogout = () => {
     dispatch(Logout());
   };
+
+  const handleClick = () => {
+    setOpen(!open);
+  };
   return (
-    <div className="top open">
-      <div className="top_Left open">
+    <div className={open ? "top open" : "top"} onClick={open && handleClick}>
+      <div className={open ? "top_Left open" : "top_Left"}>
         <FaFacebookSquare className="left_Icons" />
         <FaTwitterSquare className="left_Icons" />
         <FaInstagramSquare className="left_Icons" />
       </div>
-      <div className="top_Center open">
+      <div className={open ? "top_Center open" : "top_Center"}>
         <ul className="topList">
           <li className="topListItem">
             <Link
@@ -81,7 +85,7 @@ const Topbar = () => {
           </li>
         </ul>
       </div>
-      <div className="top_Right open">
+      <div className={open ? "top_Right open" : "top_Right"}>
         {user ? (
           <img
             src={`${PF}/16319860493636.jpeg`}
@@ -112,12 +116,24 @@ const Topbar = () => {
         <FaSearch className="right_Icons" />
       </div>
       <div className="top_toggle">
-        <h2>Blog app</h2>
+        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+          <h2 className="top_toggle_title">Blog app</h2>
+        </Link>
 
         {open ? (
-          <CgClose style={{ zIndex: 999, color: "white" }} />
+          <CgClose
+            style={{
+              zIndex: 999,
+              color: "white",
+              position: "absolute",
+              top: "30",
+              right: "20",
+              fontSize: "30px",
+            }}
+            onClick={handleClick}
+          />
         ) : (
-          <FaBars className="top_toggle_Icon" />
+          <FaBars className="top_toggle_Icon" onClick={handleClick} />
         )}
       </div>
     </div>

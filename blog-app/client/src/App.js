@@ -17,7 +17,7 @@ function App() {
 
       <Switch>
         <Route exact path="/">
-          <Home />
+          {user ? <Home /> : <Login />}
         </Route>
         <Route path="/posts">
           <Home />

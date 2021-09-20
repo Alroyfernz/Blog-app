@@ -85,7 +85,7 @@
 @media (max-width: 670px) {
     .top {
         position: sticky;
-        background-color: lightblue;
+        background-color: rgba(247, 216, 216, 0.568);
 
         &.open {
             display: flex;
@@ -93,6 +93,8 @@
             height: 100vh;
             background-color: black;
             z-index: 998;
+
+            transition: 0.2s all ease-in-out;
         }
         &_Left {
             display: none;
@@ -139,20 +141,39 @@
             display: none;
             &.open {
                 display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                .topListHide {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+
+                    &_Item {
+                        color: #fff;
+                        font-size: 30px;
+                        font-weight: 600px;
+                        padding: 20px;
+                    }
+                }
             }
         }
         &_toggle {
+            width: 100%;
             display: flex;
             justify-content: space-between;
 
             align-items: center;
 
+            &_title {
+                margin-left: 10px;
+            }
             &_Icon {
-                margin-left: 220px;
+                margin-right: 10px;
+                font-size: 24px;
                 &:hover {
                     cursor: pointer;
-                }
-                &.close {
                 }
             }
         }

@@ -8,7 +8,8 @@ import { useLocation } from "react-router";
 const Home = () => {
   const [posts, setPosts] = useState();
   const { search } = useLocation();
-
+  const user = localStorage.getItem("user");
+  console.log(user);
   useEffect(() => {
     const fetchPosts = async () => {
       const response = await axios.get("/posts" + search);
@@ -17,7 +18,7 @@ const Home = () => {
     };
 
     fetchPosts();
-  }, []);
+  }, [search]);
   return (
     <>
       <Header />

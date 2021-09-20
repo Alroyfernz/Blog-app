@@ -34,12 +34,14 @@ const Sidebar = () => {
         <span className="sidebar_Item_Title">Categories</span>
         <ul className="sidebar_Item_List">
           {cats?.map((c) => {
-            <Link
-              to={`/?cat=${c.name}`}
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              <li className="sidebar_Item_List_Item">{c.name}</li>;
-            </Link>;
+            return (
+              <Link
+                to={`/?cat=${c.name}`}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <li className="sidebar_Item_List_Item">{c.name}</li>;
+              </Link>
+            );
           })}
         </ul>
       </div>

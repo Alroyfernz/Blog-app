@@ -58,3 +58,29 @@
         }
     }
 }
+
+@media screen and (max-width: 608px) {
+    .write {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        &_Image {
+            margin: unset;
+
+            width: 90%;
+        }
+        &_Form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            &_Group {
+                margin: unset;
+            }
+        }
+        &_Submit {
+        }
+    }
+}

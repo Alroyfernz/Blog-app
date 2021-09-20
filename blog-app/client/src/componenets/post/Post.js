@@ -11,7 +11,7 @@ const Post = ({ post }) => {
       <div className="post_Info">
         <div className="post_Catergories">
           {post.categories.map((c) => {
-            <span className="post_Catergory">{c.name}</span>;
+            return <span className="post_Catergory">{c.name}</span>;
           })}
         </div>
         <Link

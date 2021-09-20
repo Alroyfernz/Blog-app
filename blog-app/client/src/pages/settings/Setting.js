@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Sidebar from "../../componenets/sidebar/Sidebar";
 import "./setting.scss";
 import { BiUserCircle } from "react-icons/bi";
+import { Context } from "../../context/Context";
 const Setting = () => {
+  const { user } = useContext(Context);
+
   return (
     <div className="settings">
       <div className="settings_Wrapper">
@@ -21,9 +24,9 @@ const Setting = () => {
             <input type="file" id="fileInput" style={{ display: "none" }} />
           </div>
           <label>Username</label>
-          <input type="text" placeholder="Alroy" />
+          <input type="text" placeholder={user.username} />
           <label>Email</label>
-          <input type="email" placeholder="aloryfernandes@gmail.com" />
+          <input type="email" placeholder={user.email} />
           <label>Password</label>
           <input type="password" />
           <button className="settingsSubmit">Update</button>
