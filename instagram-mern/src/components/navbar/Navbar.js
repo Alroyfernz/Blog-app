@@ -1,6 +1,5 @@
 import React from "react";
 import { HiSearch } from "react-icons/hi";
-
 import "./navbar.scss";
 const Navbar = () => {
   return (
